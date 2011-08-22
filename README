@@ -1,0 +1,64 @@
+Latex scritps
+
+Description:
+Latex script to create beamer presentation
+
+wiht a command <b>latex_new presentation </b>It creates:
+
+create  codes/                              = folder for codes
+create  codes/01-valor-absoluto.c           = a example of code
+create  images/                             = folder for images
+create  slides/                             = folder for frames
+create  slides/01-cap.tex                   = frame for cap
+create  slides/02-outline.tex               = frame for outline
+create  slides/03-intro.tex                 = template for intro
+create  slides/99-references.tex            = template for references frame
+create  bibliography/                       = folder for files .bib
+create  bibliography/presentation.bib       = a initial .bib file
+create  stys/                               = folder for stys
+create  stys/minted.sty                     = file used to highlight codes
+create  themes/                             = folder for themes
+create  Makefile                            = Makefile for compile latex codes
+create  presentation.tex                    = root file for presentation
+
+How to Install:
+
+This scripts just works in linux
+
+for install execute the follows commands
+
+$ ~: mkdir scripts
+$ ~: cd scripts
+$ ~/scripts: chmod +x bin/latex_new
+$ ~/scripts: echo "export PATH=$PATH:~/scripts/latex/bin" >> ~/.bashrc
+$ ~/scripts: source $HOME/.bashrc
+
+Now you have the latex_new command available
+
+To test try:
+
+latex_new some_name
+cd some_name
+make
+
+If all works fine it will open a pdf presentation
+
+autocompile:
+
+You can use the auto compile script for monitors a file and run a command:
+to use run the command ./autocompile slides/01-intro.tex make in your directory project.
+The first parameter can be any file that you want
+
+In this way, when you save a file it will call make automatically
+
+Dependencies:
+
+You must have the latex minted
+for install please follow the instructions in http://www.ctan.org/tex-archive/macros/latex/contrib/minted
+
+You must have the ruby install
+
+Observations:
+- For default the references are comment in Makefile and in the root document.
+
+

@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+def replace(filename, pattern, string)
+  `sed -i 's/#{pattern}/#{string}/g' #{filename}`
+end
+
+name = ARGV[0]
+
+files = ["codes/","codes/01-valor-absoluto.c", "images/", "slides/", "slides/01-cap.tex",
+         "slides/02-outline.tex", "slides/03-intro.tex", "slides/99-references.tex" , "bibliography/", "bibliography/#{name}.bib", "stys/", "stys/minted.sty", "themes/", "Makefile", "#{name}.tex" ]
+
+unless name.nil?
+  if (File.exists?(name))
+    puts "Arquivo ou diretório já existe!"
+  else
+    system("cp -r ~/scripts/latex/_presentation #{name}")
+    system("mv #{name}/_presentation.tex #{name}/#{name}.tex")
+    system("mv #{name}/bibliography/_presentation.bib #{name}/bibliography/#{name}.bib")
+
+    replace("#{name}/Makefile", "_presentation", "#{name}")
+    replace("#{name}/slides/99-referencias.tex", "_presentation", "#{name}")
+
+    files.each do |f|
+      system("echo     create '\033[31m #{f} \033[0m '; tput sgr0")
+    end
+  end
+else
+  puts "É necessário especificar o nome da apresentação"
+end
+
