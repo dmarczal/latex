@@ -1,0 +1,62 @@
+<h1>Latex scritps</h1>
+
+<div>
+<b>Description:</b>
+ A script to create:
+    beamer presentation
+    sbc article template
+</div>
+
+<div>
+
+<h2>How to install</h2>
+
+This scripts just works in linux
+
+for install execute the follows commands in your home
+
+$ ~: mkdir scripts
+$ ~: cd scripts
+$ ~: git clone git@github.com:dmarczal/latex.git
+$ ~/scripts: chmod +x bin/latex_new
+$ ~/scripts: echo "export PATH=$PATH:~/scripts/latex/bin" >> ~/.bashrc
+$ ~/scripts: source $HOME/.bashrc
+
+Now you have the latex_new command available
+
+To test try:
+  latex_new some_name -p   # to create a latex beamer presentation
+  latex_new some_name -sbc # to create a latex sbc article
+  
+  cd some_name
+  make
+
+  If all works fine it will open a pdf
+</div>
+
+<div>
+
+<h2>Features</h2>
+
+autocompile:
+
+You can use the auto compile script for monitors a file and run a command:
+to use run the command ./autocompile slides/01-intro.tex make in your directory project.
+The first parameter can be any file that you want
+
+In this way, when you save a file it will call make automatically
+</div>
+
+<div>
+
+<h2>Dependencies:</h2>
+
+You must have the latex minted
+for install please follow the instructions in http://www.ctan.org/tex-archive/macros/latex/contrib/minted
+
+You must have the ruby install
+
+Observations:
+  - By default, the references of beamer presentation are comment in Makefile and in the root document.
+
+</div>
