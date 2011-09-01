@@ -1,34 +1,23 @@
-Latex scritps
+<h1>Latex scritps</h1>
 
-Description:
-Latex script to create beamer presentation
+<div>
+<b>Description:</b>
+ A script to create:
+    beamer presentation
+    sbc article template
+</div>
 
-wiht a command <b>latex_new presentation </b>It creates:
+<div>
 
-create  codes/                              = folder for codes
-create  codes/01-valor-absoluto.c           = a example of code
-create  images/                             = folder for images
-create  slides/                             = folder for frames
-create  slides/01-cap.tex                   = frame for cap
-create  slides/02-outline.tex               = frame for outline
-create  slides/03-intro.tex                 = template for intro
-create  slides/99-references.tex            = template for references frame
-create  bibliography/                       = folder for files .bib
-create  bibliography/presentation.bib       = a initial .bib file
-create  stys/                               = folder for stys
-create  stys/minted.sty                     = file used to highlight codes
-create  themes/                             = folder for themes
-create  Makefile                            = Makefile for compile latex codes
-create  presentation.tex                    = root file for presentation
-
-How to Install:
+<h2>How to install</h2>
 
 This scripts just works in linux
 
-for install execute the follows commands
+for install execute the follows commands in your home
 
 $ ~: mkdir scripts
 $ ~: cd scripts
+$ ~: git clone git@github.com:dmarczal/latex.git
 $ ~/scripts: chmod +x bin/latex_new
 $ ~/scripts: echo "export PATH=$PATH:~/scripts/latex/bin" >> ~/.bashrc
 $ ~/scripts: source $HOME/.bashrc
@@ -36,12 +25,18 @@ $ ~/scripts: source $HOME/.bashrc
 Now you have the latex_new command available
 
 To test try:
+  latex_new some_name -p   # to create a latex beamer presentation
+  latex_new some_name -sbc # to create a latex sbc article
+  
+  cd some_name
+  make
 
-latex_new some_name
-cd some_name
-make
+  If all works fine it will open a pdf
+</div>
 
-If all works fine it will open a pdf presentation
+<div>
+
+<h2>Features</h2>
 
 autocompile:
 
@@ -50,8 +45,11 @@ to use run the command ./autocompile slides/01-intro.tex make in your directory 
 The first parameter can be any file that you want
 
 In this way, when you save a file it will call make automatically
+</div>
 
-Dependencies:
+<div>
+
+<h2>Dependencies:</h2>
 
 You must have the latex minted
 for install please follow the instructions in http://www.ctan.org/tex-archive/macros/latex/contrib/minted
@@ -59,6 +57,6 @@ for install please follow the instructions in http://www.ctan.org/tex-archive/ma
 You must have the ruby install
 
 Observations:
-- For default the references are comment in Makefile and in the root document.
+  - By default, the references of beamer presentation are comment in Makefile and in the root document.
 
-
+</div>

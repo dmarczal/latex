@@ -1,30 +1,53 @@
 #!/usr/bin/env ruby
+require 'find'
+
+name = ARGV[0]
+option = ARGV[1]
 
 def replace(filename, pattern, string)
   `sed -i 's/#{pattern}/#{string}/g' #{filename}`
 end
 
-name = ARGV[0]
-
-files = ["codes/","codes/01-valor-absoluto.c", "images/", "slides/", "slides/01-cap.tex",
-         "slides/02-outline.tex", "slides/03-intro.tex", "slides/99-references.tex" , "bibliography/", "bibliography/#{name}.bib", "stys/", "stys/minted.sty", "themes/", "Makefile", "#{name}.tex" ]
-
-unless name.nil?
-  if (File.exists?(name))
-    puts "Arquivo ou diretório já existe!"
-  else
-    system("cp -r ~/scripts/latex/_presentation #{name}")
-    system("mv #{name}/_presentation.tex #{name}/#{name}.tex")
-    system("mv #{name}/bibliography/_presentation.bib #{name}/bibliography/#{name}.bib")
-
-    replace("#{name}/Makefile", "_presentation", "#{name}")
-    replace("#{name}/slides/99-referencias.tex", "_presentation", "#{name}")
-
-    files.each do |f|
-      system("echo     create '\033[31m #{f} \033[0m '; tput sgr0")
+def show_files(basedir)
+  space  = "    "
+  for dir in basedir
+    Find.find(dir) do |path|
+      if FileTest.directory?(path)
+          next
+      else
+        system("echo '#{space}' create '\033[31m #{path} \033[0m '; tput sgr0")
+      end
     end
   end
-else
-  puts "É necessário especificar o nome da apresentação"
 end
+
+def create(name, type)
+  system("cp -r ~/scripts/latex/#{type} #{name}")
+  system("mv #{name}/#{type}.tex #{name}/#{name}.tex")
+  system("mv #{name}/bibliography/#{type}.bib #{name}/bibliography/#{name}.bib")
+
+  replace("#{name}/Makefile", type, "#{name}")
+  replace("#{name}/*/99-references.tex", type, "#{name}")
+  
+  show_files(name)
+end
+
+if name.nil? || option.nil?
+  puts "É necessário especificar o nome e tipo de documento"
+  puts "\n latex_new nome \n \t -p   para apresentação \n \t -sbc para artigo da sbc"
+else
+  if (File.exists?(name))
+    puts "Nome inválido: arquivo ou diretório existente!"
+  else
+    if option.eql?("-p")
+      create(name, "_presentation")
+    elsif option.eql?("-sbc")
+       create(name, "_sbc-template")
+    end
+  end
+end
+
+#    files.each do |f|
+#      system("echo     create '\033[31m #{f} \033[0m '; tput sgr0")
+#    end
 
