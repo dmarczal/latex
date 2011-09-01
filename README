@@ -1,15 +1,11 @@
-<h1>Latex scritps</h1>
+Latex scritps
 
-<div>
-<b>Description:</b>
+Description:
  A script to create:
     beamer presentation
     sbc article template
-</div>
 
-<div>
-
-<h2>How to install</h2>
+How to install
 
 This scripts just works in linux
 
@@ -32,11 +28,9 @@ To test try:
   make
 
   If all works fine it will open a pdf
-</div>
 
-<div>
 
-<h2>Features</h2>
+Features
 
 autocompile:
 
@@ -45,11 +39,9 @@ to use run the command ./autocompile slides/01-intro.tex make in your directory 
 The first parameter can be any file that you want
 
 In this way, when you save a file it will call make automatically
-</div>
 
-<div>
 
-<h2>Dependencies:</h2>
+Dependencies:
 
 You must have the latex minted
 for install please follow the instructions in http://www.ctan.org/tex-archive/macros/latex/contrib/minted
@@ -58,5 +50,3 @@ You must have the ruby install
 
 Observations:
   - By default, the references of beamer presentation are comment in Makefile and in the root document.
-
-</div>
