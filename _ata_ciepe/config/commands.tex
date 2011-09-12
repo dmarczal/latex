@@ -1,0 +1,65 @@
+% Comandos
+\newcommand{\degree}{\ensuremath{^\circ}}
+\makeatletter
+\newcommand\tinyv{\@setfontsize\tinyv{6pt}{6pt}}
+\makeatother
+
+\newcommand{\header}{
+  \begin{center}
+     \textbf{Universidade Estadual do Centro-Oeste - UNICENTRO}\\
+     \vspace{.5cm}
+  \end{center}
+   Setor de Ciências Exatas e de Tecnologia – SSET \\
+   Departamento de Ciência da Computação – DECOMP \\
+   Comissão Interna de Ensino, Pesquisa e Extensão – CIEPE \\
+}
+
+\newcommand{\ata}[1]{
+  \vspace{.5cm}
+  \begin{center}
+    \textbf{Ata n$\degree$ #1}
+  \end{center}
+  \vspace{.5cm}
+}
+
+\usepackage{ifthen}
+
+\newcommand{\finishata}[2]{
+  Sem mais, eu, #1, lavrei a presente ata, que após lida e aprovada será assinada pelos membros presentes.
+  \ifthenelse{\equal{#2}{}}{
+    Guarapuava, \today.
+  }{
+    Guarapuava, #2.
+  }
+}
+
+\newcommand{\dateata}[1]{
+  \vspace{.7cm}
+  \ifthenelse{\equal{#1}{}}{
+    \flushright{Guarapuava, \today}
+  }{
+    \flushright{Guarapuava, #1}
+  }
+  \vspace{5mm}
+}
+
+\newcommand{\members}[4]{
+  \vspace{1cm}
+  \begin{minipage}{7cm}
+    \begin{center}
+        \vspace{1cm}
+        #1 \\
+        \vspace{1cm}
+        #3. \\
+    \end{center}
+  \end{minipage}\hfill
+  \hspace{5mm}
+  \begin{minipage}{7cm}
+    \begin{center}
+        \vspace{1cm}
+        #2 \\
+        \vspace{1cm}
+        #4 \\
+    \end{center}
+  \end{minipage}
+}

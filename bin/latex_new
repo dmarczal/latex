@@ -21,14 +21,16 @@ def show_files(basedir)
   end
 end
 
-def create(name, type)
+def create(name, type, option = "")
   system("cp -r ~/scripts/latex/#{type} #{name}")
   system("mv #{name}/#{type}.tex #{name}/#{name}.tex")
-  system("mv #{name}/bibliography/#{type}.bib #{name}/bibliography/#{name}.bib")
-
-  replace("#{name}/Makefile", type, "#{name}")
-  replace("#{name}/*/99-references.tex", type, "#{name}")
   
+  unless (option.eql?("-ata"))
+    system("mv #{name}/bibliography/#{type}.bib #{name}/bibliography/#{name}.bib")
+    replace("#{name}/*/99-references.tex", type, "#{name}")
+  end
+  
+  replace("#{name}/Makefile", type, "#{name}")
   show_files(name)
 end
 
@@ -43,6 +45,8 @@ else
       create(name, "_presentation")
     elsif option.eql?("-sbc")
        create(name, "_sbc-template")
+    elsif option.eql?("-ata")
+       create(name, "_ata_ciepe", option)
     end
   end
 end
