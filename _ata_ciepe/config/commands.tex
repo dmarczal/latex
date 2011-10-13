@@ -25,12 +25,9 @@
 \usepackage{ifthen}
 
 \newcommand{\finishata}[2]{
-  Sem mais, eu, #1, lavrei a presente ata, que após lida e aprovada será assinada pelos membros presentes.
-  \ifthenelse{\equal{#2}{}}{
-    Guarapuava, \today.
-  }{
-    Guarapuava, #2.
-  }
+ Sem mais, eu, #1, lavrei a presente ata, que após lida e aprovada será assinada pelos membros presentes.
+  \ifthenelse{\equal{#2}{}}
+  {Guarapuava, \today.}{Guarapuava, #2.}
 }
 
 \newcommand{\dateata}[1]{
@@ -50,7 +47,7 @@
         \vspace{1cm}
         #1 \\
         \vspace{1cm}
-        #3. \\
+        #3 \
     \end{center}
   \end{minipage}\hfill
   \hspace{5mm}
@@ -59,7 +56,7 @@
         \vspace{1cm}
         #2 \\
         \vspace{1cm}
-        #4 \\
+        #4
     \end{center}
   \end{minipage}
 }

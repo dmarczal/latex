@@ -23,7 +23,8 @@ Now you have the latex_new command available
 To test try:
   latex_new some_name -p   # to create a latex beamer presentation
   latex_new some_name -sbc # to create a latex sbc article
-  
+  latex_new some_name -ata # to create a ata example
+
   cd some_name
   make
 

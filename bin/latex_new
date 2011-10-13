@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+#encoding: utf-8
 require 'find'
 
 name = ARGV[0]
@@ -10,7 +11,7 @@ end
 
 def show_files(basedir)
   space  = "    "
-  for dir in basedir
+  for dir in Dir[basedir]
     Find.find(dir) do |path|
       if FileTest.directory?(path)
           next
@@ -24,19 +25,19 @@ end
 def create(name, type, option = "")
   system("cp -r ~/scripts/latex/#{type} #{name}")
   system("mv #{name}/#{type}.tex #{name}/#{name}.tex")
-  
+
   unless (option.eql?("-ata"))
     system("mv #{name}/bibliography/#{type}.bib #{name}/bibliography/#{name}.bib")
     replace("#{name}/*/99-references.tex", type, "#{name}")
   end
-  
+
   replace("#{name}/Makefile", type, "#{name}")
   show_files(name)
 end
 
 if name.nil? || option.nil?
   puts "É necessário especificar o nome e tipo de documento"
-  puts "\n latex_new nome \n \t -p   para apresentação \n \t -sbc para artigo da sbc"
+  puts "\n latex_new nome \n \t -p   para apresentação \n \t -sbc para artigo da sbc \n \t -ata para ata da ciepe"
 else
   if (File.exists?(name))
     puts "Nome inválido: arquivo ou diretório existente!"
